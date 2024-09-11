@@ -22,7 +22,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Special
+# others
 .eslintcache
 .eslintrc
 /7150606-API-React-intermediaire
