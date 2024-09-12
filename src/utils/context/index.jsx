@@ -29,5 +29,3 @@ export const SurveyProvider = ({ children }) => {
     </SurveyContext.Provider>
   )
 }
-
-export default SurveyProvider
