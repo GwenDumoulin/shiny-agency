@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
@@ -69,9 +69,14 @@ function Survey() {
   const { theme } = useTheme()
 
   const { saveAnswers, answers } = useContext(SurveyContext)
+  const inputRef = useRef(null)
 
   function saveReply(answer) {
     saveAnswers({ [questionNumber]: answer })
+    if (surveyData && surveyData[questionNumberInt + 1])
+      setTimeout(() => {
+        inputRef.current.click()
+      }, '300')
   }
   const { data, isLoading, error } = useFetch(`http://localhost:8000/survey`)
   const surveyData = data?.surveyData
@@ -109,7 +114,9 @@ function Survey() {
       <LinkWrapper theme={theme}>
         <Link to={`/survey/${prevQuestionNumber}`}>Précédent</Link>
         {surveyData && surveyData[questionNumberInt + 1] ? (
-          <Link to={`/survey/${nextQuestionNumber}`}>Suivant</Link>
+          <Link to={`/survey/${nextQuestionNumber}`} ref={inputRef}>
+            Suivant
+          </Link>
         ) : (
           <Link to="/results">Résultats</Link>
         )}

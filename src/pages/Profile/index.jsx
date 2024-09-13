@@ -98,16 +98,10 @@ function Profile() {
       })
   }, [queryId])
 
-  const {
-    picture,
-    name,
-    location,
-    tjm,
-    job,
-    skills,
-    available,
-    id,
-  } = profileData
+  const { picture, name, location, tjm, job, skills, available, id } =
+    profileData
+
+  console.log(profileData)
 
   return (
     <ThemeContext.Consumer>
