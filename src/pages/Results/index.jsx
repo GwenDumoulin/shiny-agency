@@ -76,21 +76,20 @@ function Results() {
   const queryParams = formatQueryParams(answers)
 
   const { data, isLoading, error } = useFetch(
-    `http://localhost:8000/results?${queryParams}`,
+    `http://localhost:8000/results?${queryParams}`
   )
+
   if (error) {
-    return <pre>{error}</pre>
-  } else if (isLoading) {
-    return (
-      <LoaderWrapper>
-        <Loader />
-      </LoaderWrapper>
-    )
+    return <span>Il y a un problème</span>
   }
 
   const resultsData = data?.resultsData
 
-  return (
+  return isLoading ? (
+    <LoaderWrapper>
+      <Loader data-testid="loader" />
+    </LoaderWrapper>
+  ) : (
     <ResultsContainer theme={theme}>
       <ResultsTitle theme={theme}>
         Les compétences dont vous avez besoin :
@@ -114,8 +113,10 @@ function Results() {
               theme={theme}
               key={`result-detail-${index}-${result.title}`}
             >
-              <JobTitle theme={theme}>{result.title}</JobTitle>
-              <p>{result.description}</p>
+              <JobTitle theme={theme} data-testid="job-title">
+                {result.title}
+              </JobTitle>
+              <p data-testid="job-description">{result.description}</p>
             </JobDescription>
           ))}
       </DescriptionWrapper>

@@ -37,13 +37,13 @@ const LoaderWrapper = styled.div`
 function Freelances() {
   const { theme } = useTheme()
   const { data, isLoading, error } = useFetch(
-    `http://localhost:8000/freelances`,
+    `http://localhost:8000/freelances`
   )
 
   const freelancersList = data?.freelancersList
 
   if (error) {
-    return <pre>{error}</pre>
+    return <span>Il y a un problème</span>
   }
 
   return (
@@ -54,7 +54,7 @@ function Freelances() {
       </PageSubtitle>
       {isLoading ? (
         <LoaderWrapper>
-          <Loader theme={theme} />
+          <Loader theme={theme} data-testid="loader" />
         </LoaderWrapper>
       ) : (
         <CardsContainer>
