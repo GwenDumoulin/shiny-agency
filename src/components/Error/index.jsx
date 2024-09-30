@@ -7,6 +7,7 @@ const ErrorWrapper = styled.div`
   margin: 30px;
   display: flex;
   flex-direction: column;
+  min-height: calc(100vh - 420px);
   background-color: ${({ theme }) =>
     theme === 'light' ? colors.backgroundLight : colors.backgroundDark};
   align-items: center;

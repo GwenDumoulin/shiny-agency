@@ -12,6 +12,7 @@ const CardsContainer = styled.div`
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
   justify-items: center;
+  margin: 0 60px;
 `
 
 const PageTitle = styled.h1`

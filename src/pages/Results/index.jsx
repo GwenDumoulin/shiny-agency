@@ -14,6 +14,7 @@ const ResultsContainer = styled.div`
   align-items: center;
   margin: 60px 90px;
   padding: 30px;
+  min-height: calc(100vh - 520px);
   background-color: ${({ theme }) =>
     theme === 'light' ? colors.backgroundLight : colors.backgroundDark};
 `
@@ -22,7 +23,7 @@ const ResultsTitle = styled.h2`
   color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
   font-weight: bold;
   font-size: 28px;
-  max-width: 60%;
+  max-width: 700px;
   text-align: center;
   & > span {
     padding-left: 10px;
@@ -48,6 +49,10 @@ const JobDescription = styled.div`
   & > span {
     font-size: 20px;
   }
+`
+
+const TitleWithoutJobs = styled.p`
+  margin-bottom: 5px;
 `
 
 export function formatJobList(title, listLength, index) {
@@ -98,8 +103,6 @@ function Results() {
     answers[5],
   )
 
-  console.log(resultsData)
-
   if (resultsData?.length < 1) {
     return <EmptyList theme={theme} />
   }
@@ -107,7 +110,9 @@ function Results() {
   return (
     <ResultsContainer theme={theme}>
       <ResultsTitle theme={theme}>
-        Les compétences dont vous avez besoin :
+        <TitleWithoutJobs>
+          Les compétences dont vous avez besoin :
+        </TitleWithoutJobs>
         {resultsData &&
           resultsData.map((result, index) => (
             <JobTitle

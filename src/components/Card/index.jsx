@@ -6,9 +6,9 @@ import DefaultPicture from '../../assets/profile.png'
 
 const CardLabel = styled.span`
   color: ${({ theme }) => (theme === 'light' ? colors.primary : '#ffffff')};
-  font-size: 22px;
+  font-size: 26px;
   font-weight: normal;
-  padding-left: 15px;
+  text-align: center;
 `
 
 const CardTitle = styled.div`
@@ -19,6 +19,7 @@ const CardTitle = styled.div`
   height: 25px;
   display: flex;
   align-items: center;
+  margin-top: -25px;
 `
 
 const CardImage = styled.img`

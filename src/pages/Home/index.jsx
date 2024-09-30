@@ -7,6 +7,7 @@ import HomeIllustration from '../../assets/home-illustration.svg'
 const HomeWrapper = styled.div`
   display: flex;
   justify-content: center;
+  min-height: calc(100vh - 380px);
 `
 
 const HomerContainer = styled.div`
@@ -16,7 +17,8 @@ const HomerContainer = styled.div`
   padding: 60px 90px;
   display: flex;
   flex-direction: row;
-  max-width: 1200px;
+  justify-content: center;
+  width: 100vw;
 `
 
 const LeftCol = styled.div`
@@ -24,6 +26,7 @@ const LeftCol = styled.div`
   flex-direction: column;
   justify-content: center;
   flex: 1;
+  min-width: 300px;
   ${StyledLink} {
     max-width: 250px;
   }
@@ -31,8 +34,9 @@ const LeftCol = styled.div`
 
 const StyledTitle = styled.h2`
   padding-bottom: 30px;
-  max-width: 280px;
-  line-height: 50px;
+  max-width: 320px;
+  line-height: 55px;
+  font-size: 30px;
   color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
 `
 

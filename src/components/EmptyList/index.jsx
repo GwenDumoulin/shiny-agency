@@ -8,6 +8,7 @@ const Container = styled.div`
   align-items: center;
   margin: 60px 90px;
   padding: 30px;
+  min-height: calc(100vh - 550px);
   background-color: ${({ theme }) =>
     theme === 'light' ? colors.backgroundLight : colors.backgroundDark};
 `

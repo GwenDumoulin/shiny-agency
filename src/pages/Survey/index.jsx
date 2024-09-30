@@ -11,6 +11,7 @@ const SurveyContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: calc(100vh - 380px);
 `
 
 const QuestionTitle = styled.h2`
@@ -70,13 +71,20 @@ function Survey() {
 
   const { saveAnswers, answers } = useContext(SurveyContext)
   const inputRef = useRef(null)
+  const inputRefResult = useRef(null)
 
   function saveReply(answer) {
     saveAnswers({ [questionNumber]: answer })
-    if (surveyData && surveyData[questionNumberInt + 1])
+    if (surveyData && surveyData[questionNumberInt + 1]) {
       setTimeout(() => {
         inputRef.current.click()
       }, '300')
+    }
+    if (surveyData && !surveyData[questionNumberInt + 1]) {
+      setTimeout(() => {
+        inputRefResult.current.click()
+      }, '1200')
+    }
   }
   const surveyData = dataSurvey
 
@@ -109,7 +117,9 @@ function Survey() {
             Suivant
           </Link>
         ) : (
-          <Link to="/results">Résultats</Link>
+          <Link to="/results" ref={inputRefResult}>
+            Résultats
+          </Link>
         )}
       </LinkWrapper>
     </SurveyContainer>
