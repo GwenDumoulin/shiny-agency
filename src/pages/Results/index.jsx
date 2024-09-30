@@ -3,8 +3,10 @@ import styled from 'styled-components'
 import EmptyList from '../../components/EmptyList'
 import { SurveyContext } from '../../utils/context'
 import colors from '../../utils/style/colors'
-import { useFetch, useTheme } from '../../utils/hooks'
-import { StyledLink, Loader } from '../../utils/style/Atoms'
+import { useTheme } from '../../utils/hooks'
+import { StyledLink } from '../../utils/style/Atoms'
+import dataResults from '../../data/results.json'
+import dataResultsDef from '../../data/resultsDef.json'
 
 const ResultsContainer = styled.div`
   display: flex;
@@ -48,21 +50,6 @@ const JobDescription = styled.div`
   }
 `
 
-const LoaderWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`
-
-export function formatQueryParams(answers) {
-  const answerNumbers = Object.keys(answers)
-
-  return answerNumbers.reduce((previousParams, answerNumber, index) => {
-    const isFirstParam = index === 0
-    const separator = isFirstParam ? '' : '&'
-    return `${previousParams}${separator}a${answerNumber}=${answers[answerNumber]}`
-  }, '')
-}
-
 export function formatJobList(title, listLength, index) {
   if (index === listLength - 1) {
     return title
@@ -71,30 +58,53 @@ export function formatJobList(title, listLength, index) {
   }
 }
 
+function getResults(a1, a2, a3, a4, a5, a6) {
+  const answers = { a1, a2, a3, a4, a5, a6 }
+  const answerNumbers = Object.keys(answers)
+
+  const jobsList = Object.keys(dataResults)
+
+  const requiredJobsList = answerNumbers.reduce((prevJobs, answerNumber) => {
+    if (!answers[answerNumber] || answers[answerNumber] === 'false') {
+      return prevJobs
+    }
+
+    const jobs = jobsList.reduce((prevJobAnswers, jobTitle) => {
+      if (dataResults[jobTitle].includes(answerNumber)) {
+        return [...prevJobAnswers, jobTitle]
+      }
+      return prevJobAnswers
+    }, [])
+
+    return [...prevJobs, ...jobs]
+  }, [])
+
+  const uniqueJobs = [...new Set(requiredJobsList)]
+  return uniqueJobs.map((job) => ({
+    title: job,
+    description: dataResultsDef[job],
+  }))
+}
+
 function Results() {
   const { theme } = useTheme()
   const { answers } = useContext(SurveyContext)
-  const queryParams = formatQueryParams(answers)
-
-  const { data, isLoading, error } = useFetch(
-    `http://localhost:8000/results?${queryParams}`
+  const resultsData = getResults(
+    answers[0],
+    answers[1],
+    answers[2],
+    answers[3],
+    answers[4],
+    answers[5],
   )
 
-  if (error) {
-    return <span>Il y a un problème</span>
-  }
-
-  const resultsData = data?.resultsData
+  console.log(resultsData)
 
   if (resultsData?.length < 1) {
     return <EmptyList theme={theme} />
   }
 
-  return isLoading ? (
-    <LoaderWrapper>
-      <Loader data-testid="loader" />
-    </LoaderWrapper>
-  ) : (
+  return (
     <ResultsContainer theme={theme}>
       <ResultsTitle theme={theme}>
         Les compétences dont vous avez besoin :

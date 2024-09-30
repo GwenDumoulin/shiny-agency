@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
-import { Loader } from '../../utils/style/Atoms'
 import { SurveyContext } from '../../utils/context'
-import { useFetch, useTheme } from '../../utils/hooks'
+import { useTheme } from '../../utils/hooks'
+import dataSurvey from '../../data/survey.json'
 
 const SurveyContainer = styled.div`
   display: flex;
@@ -78,23 +78,14 @@ function Survey() {
         inputRef.current.click()
       }, '300')
   }
-  const { data, isLoading, error } = useFetch(`http://localhost:8000/survey`)
-  const surveyData = data?.surveyData
-
-  if (error) {
-    return <span>Il y a un problème</span>
-  }
+  const surveyData = dataSurvey
 
   return (
     <SurveyContainer>
       <QuestionTitle theme={theme}>Question {questionNumber}</QuestionTitle>
-      {isLoading ? (
-        <Loader data-testid="loader" />
-      ) : (
-        <QuestionContent theme={theme} data-testid="question-content">
-          {surveyData && surveyData[questionNumber]}
-        </QuestionContent>
-      )}
+      <QuestionContent theme={theme} data-testid="question-content">
+        {surveyData && surveyData[questionNumber]}
+      </QuestionContent>
       <ReplyWrapper>
         <ReplyBox
           onClick={() => saveReply(true)}

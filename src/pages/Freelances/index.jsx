@@ -2,8 +2,8 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import Card from '../../components/Card'
 import colors from '../../utils/style/colors'
-import { Loader } from '../../utils/style/Atoms'
-import { useFetch, useTheme } from '../../utils/hooks'
+import { useTheme } from '../../utils/hooks'
+import dataFreelance from '../../data/freelances.json'
 
 const CardsContainer = styled.div`
   display: grid;
@@ -30,22 +30,9 @@ const PageSubtitle = styled.h2`
   color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
 `
 
-const LoaderWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`
-
 function Freelances() {
   const { theme } = useTheme()
-  const { data, isLoading, error } = useFetch(
-    `http://localhost:8000/freelances`
-  )
-
-  const freelancersList = data?.freelancersList
-
-  if (error) {
-    return <span>Il y a un problème</span>
-  }
+  const freelancersList = dataFreelance
 
   return (
     <div>
@@ -53,24 +40,22 @@ function Freelances() {
       <PageSubtitle theme={theme}>
         Chez Shiny nous réunissons les meilleurs profils pour vous.
       </PageSubtitle>
-      {isLoading ? (
-        <LoaderWrapper>
-          <Loader theme={theme} data-testid="loader" />
-        </LoaderWrapper>
-      ) : (
-        <CardsContainer>
-          {freelancersList?.map((profile) => (
+      <CardsContainer>
+        {freelancersList.map((profile) => {
+          const imagePath = require(`../../assets/photos/${profile.picture}`)
+
+          return (
             <Link key={`freelance-${profile.id}`} to={`/profile/${profile.id}`}>
               <Card
                 label={profile.job}
                 title={profile.name}
-                picture={profile.picture}
+                picture={imagePath}
                 theme={theme}
               />
             </Link>
-          ))}
-        </CardsContainer>
-      )}
+          )
+        })}
+      </CardsContainer>
     </div>
   )
 }

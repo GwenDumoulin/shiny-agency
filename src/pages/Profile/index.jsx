@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
 import colors from '../../utils/style/colors'
 import { ThemeContext } from '../../utils/context'
+import dataFreelance from '../../data/freelances.json'
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -89,25 +90,16 @@ const Availability = styled.span`
 
 function Profile() {
   const { id: queryId } = useParams()
-  const [profileData, setProfileData] = useState({})
-  useEffect(() => {
-    fetch(`http://localhost:8000/freelance?id=${queryId}`)
-      .then((response) => response.json())
-      .then((jsonResponse) => {
-        setProfileData(jsonResponse?.freelanceData)
-      })
-  }, [queryId])
+  const [profileData] = useState(dataFreelance.find((el) => el.id === queryId))
+  const { name, location, tjm, job, skills, available, id } = profileData
 
-  const { picture, name, location, tjm, job, skills, available, id } =
-    profileData
-
-  console.log(profileData)
+  const imagePath = require(`../../assets/photos/${profileData.picture}`)
 
   return (
     <ThemeContext.Consumer>
       {({ theme }) => (
         <ProfileWrapper theme={theme}>
-          <Picture src={picture} alt={name} height={150} width={150} />
+          <Picture src={imagePath} alt={name} height={150} width={150} />
           <ProfileDetails theme={theme}>
             <TitleWrapper>
               <Title>{name}</Title>
