@@ -10,6 +10,10 @@ const InputWrapper = styled.div`
 
 const StyledLabel = styled.label`
   color: ${({ theme }) => (theme === 'light' ? colors.dark : 'white')};
+  font-size: 16px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `
 
 const StyledInput = styled.input`
@@ -20,6 +24,13 @@ const StyledInput = styled.input`
     ${({ theme }) => (theme === 'light' ? colors.dark : 'white')};
   margin-top: 5px;
   margin-bottom: 15px;
+  &:focus,
+  &:focus-visible {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid
+      ${({ theme }) => (theme === 'light' ? colors.dark : 'white')};
+  }
 `
 
 function EmailInput({ theme }) {
@@ -27,7 +38,9 @@ function EmailInput({ theme }) {
 
   return (
     <InputWrapper theme={theme}>
-      <StyledLabel theme={theme}>Adresse email</StyledLabel>
+      <StyledLabel theme={theme}>
+        Entrez votre email pour recevoir la Newsletter
+      </StyledLabel>
       <StyledInput
         theme={theme}
         onChange={(e) => setInputValue(e.target.value)}

@@ -86,12 +86,12 @@ function Survey() {
     saveAnswers({ [questionNumber]: answer })
     if (surveyData && surveyData[questionNumberInt + 1]) {
       setTimeout(() => {
-        inputRef.current.click()
+        if (inputRef.current) inputRef.current.click()
       }, '300')
     }
     if (surveyData && !surveyData[questionNumberInt + 1]) {
       setTimeout(() => {
-        inputRefResult.current.click()
+        if (inputRefResult.current) inputRefResult.current.click()
       }, '1200')
     }
   }
