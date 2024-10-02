@@ -63,8 +63,10 @@ const StyledTitle = styled.h2`
 
 const Illustration = styled.img`
   flex: 1;
+  max-width: 50vw;
   @media (max-width: 768px) {
     width: 80%;
+    max-width: 80%;
   }
 `
 
