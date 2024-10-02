@@ -12,6 +12,7 @@ const ProfileWrapper = styled.div`
   align-items: center;
   padding: 90px 0;
   margin: 0 90px;
+  min-height: calc(100vh - 580px);
   background-color: ${({ theme }) =>
     theme === 'light' ? colors.backgroundLight : colors.backgroundDark};
 `

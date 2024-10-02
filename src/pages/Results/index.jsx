@@ -95,17 +95,21 @@ function Results() {
   const { theme } = useTheme()
   const { answers } = useContext(SurveyContext)
   const resultsData = getResults(
-    answers[0],
     answers[1],
     answers[2],
     answers[3],
     answers[4],
     answers[5],
+    answers[6],
   )
 
   if (resultsData?.length < 1) {
     return <EmptyList theme={theme} />
   }
+
+  let jobsIncluded = resultsData.map((a) => a.title)
+  if (jobsIncluded.includes('Frontend') && jobsIncluded.includes('Backend'))
+    jobsIncluded.push('Fullstack')
 
   return (
     <ResultsContainer theme={theme}>
@@ -123,7 +127,10 @@ function Results() {
             </JobTitle>
           ))}
       </ResultsTitle>
-      <StyledLink $isFullLink to="/freelances">
+      <StyledLink
+        $isFullLink
+        to={`/freelances?included=${encodeURIComponent(JSON.stringify(jobsIncluded))}`}
+      >
         Découvrez nos profils
       </StyledLink>
       <DescriptionWrapper>

@@ -4,6 +4,7 @@ import { StyledLink } from '../../utils/style/Atoms'
 import LightLogo from '../../assets/light-logo.png'
 import DarkLogo from '../../assets/dark-logo.png'
 import { useTheme } from '../../utils/hooks'
+import { useLocation } from 'react-router-dom'
 
 const HomeLogo = styled.img`
   height: 70px;
@@ -19,19 +20,44 @@ const NavContainer = styled.nav`
 function Header() {
   const { theme } = useTheme()
 
+  let location = useLocation()
+  console.log(location)
+
   return (
     <NavContainer>
       <Link to="/">
         <HomeLogo src={theme === 'light' ? DarkLogo : LightLogo} />
       </Link>
       <div>
-        <StyledLink $theme={theme} to="/">
+        <StyledLink
+          $theme={theme}
+          to="/"
+          style={
+            location.pathname === '/' ? { textDecoration: 'underline' } : null
+          }
+        >
           Accueil
         </StyledLink>
-        <StyledLink $theme={theme} to="/freelances">
+        <StyledLink
+          $theme={theme}
+          to="/freelances"
+          style={
+            location.pathname === '/freelances'
+              ? { textDecoration: 'underline' }
+              : null
+          }
+        >
           Profils
         </StyledLink>
-        <StyledLink to="/survey/1" $isFullLink>
+        <StyledLink
+          to="/survey/1"
+          $isFullLink
+          style={
+            location.pathname.includes('/survey/')
+              ? { textDecoration: 'underline' }
+              : null
+          }
+        >
           Faire le test
         </StyledLink>
       </div>

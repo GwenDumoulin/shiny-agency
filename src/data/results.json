@@ -1,7 +1,7 @@
 {
-  "seo": ["a2"],
-  "frontend": ["a4"],
-  "design": ["a3"],
-  "backend": ["a1", "a4", "a5"],
-  "mobile": ["a6"]
+  "SEO": ["a2"],
+  "Frontend": ["a4"],
+  "Design": ["a3"],
+  "Backend": ["a1", "a4", "a5"],
+  "Mobile": ["a6"]
 }
