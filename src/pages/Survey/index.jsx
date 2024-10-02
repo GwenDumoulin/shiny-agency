@@ -23,6 +23,10 @@ const QuestionTitle = styled.h2`
 const QuestionContent = styled.span`
   margin: 30px;
   color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
+  @media (max-width: 768px) {
+    text-align: center;
+    margin: 20px;
+  }
 `
 
 const LinkWrapper = styled.div`
@@ -42,6 +46,7 @@ const ReplyBox = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid #d3d3d3;
   background-color: ${({ theme }) =>
     theme === 'light' ? colors.backgroundLight : colors.backgroundDark};
   color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
@@ -54,6 +59,10 @@ const ReplyBox = styled.button`
   }
   &:last-of-type {
     margin-left: 15px;
+  }
+  @media (max-width: 768px) {
+    height: 60px;
+    width: 150px;
   }
 `
 

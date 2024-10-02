@@ -8,6 +8,10 @@ import { useLocation } from 'react-router-dom'
 
 const HomeLogo = styled.img`
   height: 70px;
+  @media (max-width: 768px) {
+    height: 40px;
+    margin-top: 5px;
+  }
 `
 
 const NavContainer = styled.nav`
@@ -15,13 +19,15 @@ const NavContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 `
 
 function Header() {
   const { theme } = useTheme()
 
   let location = useLocation()
-  console.log(location)
 
   return (
     <NavContainer>

@@ -28,6 +28,10 @@ export const StyledLink = styled(Link)`
   text-decoration: none;
   font-size: 18px;
   text-align: center;
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 5px 10px;
+  }
   ${(props) =>
     props.$isFullLink &&
     `color: white; 

@@ -8,6 +8,9 @@ const HomeWrapper = styled.div`
   display: flex;
   justify-content: center;
   min-height: calc(100vh - 380px);
+  @media (max-width: 768px) {
+    min-height: 0;
+  }
 `
 
 const HomerContainer = styled.div`
@@ -19,6 +22,12 @@ const HomerContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   width: 100vw;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 10px;
+  }
 `
 
 const LeftCol = styled.div`
@@ -30,6 +39,13 @@ const LeftCol = styled.div`
   ${StyledLink} {
     max-width: 250px;
   }
+  @media (max-width: 768px) {
+    align-items: center;
+    ${StyledLink} {
+      min-width: 180px;
+      padding: 10px;
+    }
+  }
 `
 
 const StyledTitle = styled.h2`
@@ -38,10 +54,18 @@ const StyledTitle = styled.h2`
   line-height: 55px;
   font-size: 30px;
   color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
+  @media (max-width: 768px) {
+    text-align: center;
+    line-height: 40px;
+    font-size: 25px;
+  }
 `
 
 const Illustration = styled.img`
   flex: 1;
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 `
 
 function Home() {

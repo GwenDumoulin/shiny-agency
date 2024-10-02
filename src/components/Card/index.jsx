@@ -20,6 +20,9 @@ const CardTitle = styled.div`
   display: flex;
   align-items: center;
   margin-top: -25px;
+  @media (max-width: 768px) {
+    margin-top: 0;
+  }
 `
 
 const CardImage = styled.img`
@@ -27,6 +30,10 @@ const CardImage = styled.img`
   width: 150px;
   align-self: center;
   border-radius: 50%;
+  @media (max-width: 768px) {
+    height: 120px;
+    width: 120px;
+  }
 `
 
 const CardWrapper = styled.div`
@@ -41,6 +48,10 @@ const CardWrapper = styled.div`
   height: 300px;
   &:hover {
     cursor: pointer;
+  }
+  @media (max-width: 768px) {
+    width: 250px;
+    height: 230px;
   }
 `
 

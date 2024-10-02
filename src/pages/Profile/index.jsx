@@ -15,6 +15,12 @@ const ProfileWrapper = styled.div`
   min-height: calc(100vh - 580px);
   background-color: ${({ theme }) =>
     theme === 'light' ? colors.backgroundLight : colors.backgroundDark};
+  @media (max-width: 768px) {
+    min-height: 0;
+    flex-direction: column;
+    padding: 30px 0;
+    margin: 0 20px;
+  }
 `
 
 const ProfileDetails = styled.div`
@@ -22,6 +28,12 @@ const ProfileDetails = styled.div`
   flex-direction: column;
   margin-left: 50px;
   color: ${({ theme }) => (theme === 'light' ? colors.dark : 'white')};
+  @media (max-width: 768px) {
+    margin-left: 0;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
 `
 
 const Picture = styled.img`

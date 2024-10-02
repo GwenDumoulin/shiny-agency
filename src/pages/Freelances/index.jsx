@@ -16,6 +16,12 @@ const CardsContainer = styled.div`
   align-items: center;
   justify-items: center;
   margin: 0 60px;
+  @media (max-width: 768px) {
+    margin: 0 10px;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 250px 250px;
+    margin-top: 20px;
+  }
 `
 
 const PageTitle = styled.h1`
@@ -23,6 +29,9 @@ const PageTitle = styled.h1`
   text-align: center;
   padding-bottom: 30px;
   color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
 `
 
 const PageSubtitle = styled.h2`
@@ -32,6 +41,9 @@ const PageSubtitle = styled.h2`
   text-align: center;
   padding-bottom: 30px;
   color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
 `
 
 const FilterButton = styled.button`
@@ -43,14 +55,28 @@ const FilterButton = styled.button`
   color: #ffffff;
   font-weight: 300;
   text-align: center;
-  background-color: #5843E4;
-  cursor: pointer;}
+  background-color: #5843e4;
+  cursor: pointer;
+  @media (max-width: 768px) {
+    font-size: 16px;
+    padding: 5px 15px;
+    margin: 5px;
+  }
 `
 
 const FilterContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;}
+  align-items: center;
+  flex-wrap: wrap;
+`
+
+const RemonveFilters = styled.p`
+  text-decoration: underline;
+  text-align: center;
+  margin: 15px auto;
+  font-size: 14px;
+  cursor: pointer;
 `
 
 function Freelances() {
@@ -101,11 +127,15 @@ function Freelances() {
                 let myRefStyle = myRefs.current[index].current.style
                 if (myRefStyle) {
                   if (myRefStyle.backgroundColor === 'rgb(88, 67, 228)') {
-                    ;[myRefStyle.backgroundColor, myRefStyle.color] =
-                      colorsExcluded
+                    myRefs.current[index].current.style.backgroundColor =
+                      colorsExcluded[0]
+                    myRefs.current[index].current.style.color =
+                      colorsExcluded[1]
                   } else {
-                    ;[myRefStyle.backgroundColor, myRefStyle.color] =
-                      colorsIncluded
+                    myRefs.current[index].current.style.backgroundColor =
+                      colorsIncluded[0]
+                    myRefs.current[index].current.style.color =
+                      colorsIncluded[1]
                   }
                 }
               }}
@@ -115,6 +145,17 @@ function Freelances() {
           )
         })}
       </FilterContainer>
+      <RemonveFilters
+        onClick={() => {
+          for (let i = 0; i < myRefs.current.length; i++) {
+            myRefs.current[i].current.style.backgroundColor = colorsExcluded[0]
+            myRefs.current[i].current.style.color = colorsExcluded[1]
+          }
+          changeIncludedJobs([])
+        }}
+      >
+        Enlever tous les profils
+      </RemonveFilters>
       <CardsContainer>
         {freelancersList.map((profile) => {
           let shouldShow = false

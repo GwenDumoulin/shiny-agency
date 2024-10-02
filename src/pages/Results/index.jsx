@@ -17,6 +17,10 @@ const ResultsContainer = styled.div`
   min-height: calc(100vh - 520px);
   background-color: ${({ theme }) =>
     theme === 'light' ? colors.backgroundLight : colors.backgroundDark};
+  @media (max-width: 768px) {
+    margin: 10px;
+    padding: 10px;
+  }
 `
 
 const ResultsTitle = styled.h2`
@@ -28,10 +32,17 @@ const ResultsTitle = styled.h2`
   & > span {
     padding-left: 10px;
   }
+  @media (max-width: 768px) {
+    max-width: 100vw;
+    font-size: 18px;
+  }
 `
 
 const DescriptionWrapper = styled.div`
   padding: 60px;
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 `
 
 const JobTitle = styled.span`
@@ -48,6 +59,12 @@ const JobDescription = styled.div`
   }
   & > span {
     font-size: 20px;
+  }
+  @media (max-width: 768px) {
+    font-size: 15px;
+    & > span {
+      font-size: 18px;
+    }
   }
 `
 
@@ -115,7 +132,7 @@ function Results() {
     <ResultsContainer theme={theme}>
       <ResultsTitle theme={theme}>
         <TitleWithoutJobs>
-          Les compétences dont vous avez besoin :
+          Les compétences dont vous&nbsp;avez&nbsp;besoin&nbsp;:
         </TitleWithoutJobs>
         {resultsData &&
           resultsData.map((result, index) => (
