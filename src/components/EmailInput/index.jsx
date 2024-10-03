@@ -45,7 +45,7 @@ function EmailInput({ theme }) {
         theme={theme}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      {inputValue}
+      {String(inputValue)}
     </InputWrapper>
   )
 }

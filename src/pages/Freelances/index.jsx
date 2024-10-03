@@ -86,9 +86,9 @@ function Freelances() {
   const freelancersList = dataFreelance
   let completeDataJob = [...Object.keys(dataJob), 'Fullstack']
   const queryParameters = new URLSearchParams(window.location.search)
-  const included = queryParameters.get('included')
+  const included = JSON.parse(queryParameters.get('included'))
   let starterJob = completeDataJob
-  if (included) starterJob = JSON.parse(included)
+  if (included && typeof included === 'object') starterJob = included
   const [includedJobs, changeIncludedJobs] = useState(starterJob)
 
   const myRefs = useRef([])

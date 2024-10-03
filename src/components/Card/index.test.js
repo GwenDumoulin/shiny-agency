@@ -1,5 +1,5 @@
 import Card from './'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from '../../utils/context'
 
 describe('Card', () => {
@@ -11,7 +11,7 @@ describe('Card', () => {
           label="Magicien frontend"
           picture="/myPicture.png"
         />
-      </ThemeProvider>
+      </ThemeProvider>,
     )
     const cardPicture = screen.getByRole('img')
     const cardTitle = screen.getByText(/Harry/i)
