@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import { StyledLink } from '../../utils/style/Atoms'
@@ -72,6 +73,9 @@ const Illustration = styled.img`
 
 function Home() {
   const { theme } = useTheme()
+  useEffect(() => {
+    document.title = 'Shiny Agency'
+  }, [])
 
   return (
     <HomeWrapper>
