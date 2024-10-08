@@ -14,7 +14,7 @@ import { ThemeProvider, SurveyProvider } from './utils/context'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <Router basename="/shiny-agency">
       <ThemeProvider>
         <SurveyProvider>
           <GlobalStyle />

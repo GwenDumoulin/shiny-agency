@@ -43,5 +43,6 @@
     "@babel/plugin-transform-private-property-in-object": "^7.24.7",
     "msw": "^0.28.2",
     "prettier": "^3.3.3"
-  }
+  },
+  "homepage": "https://foxidees.com/shiny-agency/"
 }
